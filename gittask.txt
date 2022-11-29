@@ -1,0 +1,151 @@
+Difference between Revert & Reset & Restore
+
+->revert & reset 
+Revert we use in both local & server
+Reset we use in local not in server
+If we use reset in server some datas may get deleted 
+
+->Assume we created two files 
+click ls
+a.txt  ,  b.txt -> 2 files created
+
+                       
+vi a.txt
+// it open a file 
+//->(Eg) hello a1
+//next esc:wq
+
+git commit -a -m "a1"
+// it show one file a1 commited
+
+
+
+
+vi b.txt
+// it open a file 
+//(Eg) hello b1
+//next esc:wq
+
+git commit -a -m "b1"
+//it show commited one file b1 commited
+
+
+
+
+vi a.txt
+// it open a file 
+//and it show hello a1
+//->(Eg) hello a2
+//next esc:wq
+
+git commit -a -m "a2"
+//it show commited one file a2 commited
+
+
+
+vi b.txt
+// it open a file 
+//and it show hello b1
+//->(Eg) hello b2
+//next esc:wq
+
+git commit -a -m "b2"
+//it show commited one file b2 commited
+
+
+                      
+if we want to check it
+git log --oneline
+// it show 4 commits with id
+(head -> main)
+a1,b1,a2,b2
+
+^c git log --oneline
+
+...
+
+
+now git revert command
+
+git revert --hard head~1
+//it ask u want to modify
+
+ 
+git log --oneline
+//it show ->revert "a1"-> Extra revert created with new id
+//what we did in "a1" it all removed & created in new revert command "a1"
+Then it show 5 id for 4 commits
+
+->This the difference bw Revert vs Reset
+==================
+
+
+What is Restore
+
+//we created a file "vss.txt"
+
+ls
+//it show vss.txt
+
+git status
+//it show status
+
+
+mv vss.txt vss.html
+// mv-> move (rename)
+
+ls
+//it show vss.html
+
+git status
+// it show vss.txt has deleted 
+// it show vss.html has created
+-> here we know tat we not deleted (just we renamed)
+-> but git didnot understand
+
+
+solution
+git add vss.html
+// for going to staging area
+
+
+git add vss.txt
+// for going to staging area 
+
+
+
+
+git status
+// now we see renamed:  vss.txt ->vss.html
+//"use git restore --staged <file>... " and ask to commit 
+
+
+
+git commit -m "rename vss"
+//it gets commited
+
+
+ls
+//we see channel.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
